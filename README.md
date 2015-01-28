@@ -9,8 +9,24 @@ Command does not output anything, but excutes by itself. You can redirect output
 Compiling
 =========
 
+Build uses CMake. To compile, run:
+
+    cmake . -DMYSQL_DIR=/path/to/mysql/installation
+    make
+
 Installing
 ==========
+
+Copy `librun_external.so` into plugin directory of your MySQL server, then login and type:
+
+    CREATE FUNCTION run_external RETURNS INT SONAME 'librun_external.so';
+    
+Uninstallation
+==============
+
+Connect to MySQL command line client and run:
+
+    DROP FUNCTION run_external;
 
 Usage examples
 ==============
