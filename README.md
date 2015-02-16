@@ -6,6 +6,28 @@ Introduction
 
 Command does not output anything, but excutes by itself. You can redirect output to file.
 
+*Warning*: Please be aware that anyone can use this to run OS commands with the privileges of the useraccount which is used for MySQL.
+
+    mysql> SHOW GRANTS;
+    +---------------------------------------------------------------------------------------------------------------+
+    | Grants for nobody@localhost                                                                                   |
+    +---------------------------------------------------------------------------------------------------------------+
+    | GRANT USAGE ON *.* TO 'nobody'@'localhost' IDENTIFIED BY PASSWORD '*6C387FC3893DBA1E3BA155E74754DA6682D04747' |
+    +---------------------------------------------------------------------------------------------------------------+
+    1 row in set (0.00 sec)
+    
+    mysql> SELECT run_external('date > /tmp/date123');
+    +-------------------------------------+
+    | run_external('date > /tmp/date123') |
+    +-------------------------------------+
+    |                                   1 |
+    +-------------------------------------+
+    1 row in set (0.01 sec)
+    
+    mysql> \! cat /tmp/date123
+    Mon Feb 16 11:09:29 CET 2015
+
+
 Compiling
 =========
 
