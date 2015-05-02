@@ -1,0 +1,14 @@
+CREATE FUNCTION run_external RETURNS INT SONAME 'librun_external.so';
+SELECT run_external('touch /tmp/run_external_test');
+run_external('touch /tmp/run_external_test')
+1
+SELECT run_external('stat /tmp/run_external_test');
+run_external('stat /tmp/run_external_test')
+1
+SELECT run_external('rm /tmp/run_external_test');
+run_external('rm /tmp/run_external_test')
+1
+SELECT run_external('stat /tmp/run_external_test');
+run_external('stat /tmp/run_external_test')
+0
+DROP FUNCTION run_external;
