@@ -14,7 +14,11 @@ ELSE()
   MESSAGE(WARNING "${MYSQL_DIR_NAME_DOCSTRING} was not specified. If something goes wrong re-reun with option -DMYSQL_DIR")  
 ENDIF()
 
-INCLUDE_DIRECTORIES("${MYSQL_DIR}/include")
+IF(EXISTS "${MYSQL_DIR}/include")
+  INCLUDE_DIRECTORIES("${MYSQL_DIR}/include")
+ELSE()
+  INCLUDE_DIRECTORIES("${MYSQL_DIR}")
+ENDIF()
 
 ADD_DEFINITIONS("-DMYSQL_DYNAMIC_PLUGIN")
 ADD_DEFINITIONS("-rdynamic")
