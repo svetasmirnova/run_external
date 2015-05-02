@@ -36,10 +36,14 @@ Build uses CMake. To compile, run:
     cmake . -DMYSQL_DIR=/path/to/mysql/installation
     make
 
+You will also need a compiler like clang or gcc.
+
+If you use the MySQL APT repositories then you need to install libmysqlclient-dev and set MYSQL_DIR to /usr/include/mysql
+
 Installing
 ==========
 
-Copy `librun_external.so` into plugin directory of your MySQL server, then login and type:
+Copy `librun_external.so` into plugin directory (SELECT @@plugin_dir) of your MySQL server, then login and type:
 
     CREATE FUNCTION run_external RETURNS INT SONAME 'librun_external.so';
     
