@@ -3,9 +3,11 @@
 long long run_external(UDF_INIT *initid, UDF_ARGS *args, char *is_null, char *error)
 {
 	char *command = new char[args->lengths[0]+1];
-	command = args->args[0];
+	memcpy(command, args->args[0], args->lengths[0]);
 	command[args->lengths[0]] = '\0';
 	int result = system(command);
+	delete[] command;
+
 	if (0 != result)
 		return false;
 	else
